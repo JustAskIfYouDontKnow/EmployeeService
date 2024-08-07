@@ -21,4 +21,4 @@ WORKDIR /app
 COPY --from=publish /app/publish .
 EXPOSE 8080
 
-ENTRYPOINT ["sh", "-c", "sleep 30; dotnet ef database update; dotnet Web.dll"]
+ENTRYPOINT ["sh", "-c", "dotnet Web.dll; dotnet ef database update"]
