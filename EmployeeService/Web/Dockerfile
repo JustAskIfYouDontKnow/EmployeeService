@@ -6,8 +6,6 @@ COPY ["Web/Web.csproj", "Web/"]
 COPY ["Domain/Domain.csproj", "Domain/"]
 COPY ["Application/Application.csproj", "Application/"]
 COPY ["Infrastructure/Infrastructure.csproj", "Infrastructure/"]
-COPY wait-for-it.sh /usr/local/bin/wait-for-it.sh
-RUN chmod +x /usr/local/bin/wait-for-it.sh
 RUN dotnet restore "Web/Web.csproj"
 
 COPY . .
@@ -23,4 +21,4 @@ WORKDIR /app
 COPY --from=publish /app/publish .
 EXPOSE 8080
 
-ENTRYPOINT ["sh", "-c", "/usr/local/bin/wait-for-it.sh db:1433 -t 45 -- dotnet ef database update && dotnet Web.dll"]
+ENTRYPOINT ["sh", "-c", "sleep 30; dotnet ef database update; dotnet Web.dll"]
