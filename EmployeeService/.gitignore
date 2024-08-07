@@ -1,0 +1,44 @@
+# Папки сборки
+[Bb]in/
+[Oo]bj/
+
+# Пользовательские конфигурации
+*.user
+*.rsuser
+*.suo
+*.userosscache
+*.userprefs
+
+# Конфигурационные файлы проекта
+*.csproj.user
+*.csproj.nuget.g.props
+*.csproj.nuget.g.targets
+*.build.cs
+
+# Файлы сборки
+*.dll
+*.exe
+*.pdb
+*.cache
+
+# Файлы логов
+*.log
+
+# Файлы временных версий и резервных копий
+*.bak
+*.swp
+*._s*
+*.swo
+*.tmp
+*.csv
+
+# Папки автогенерируемых файлов
+Generated/
+
+# Папки кэша и резервных копий
+_ReSharper.*
+*.ncrunchproject
+*.dotCover
+.cache/
+*.dotsettings.user
+.idea/

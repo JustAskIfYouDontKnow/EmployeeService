@@ -1,0 +1,38 @@
+﻿version: '3.4'
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Web/Dockerfile
+    ports:
+      - "5000:8080"
+    networks:
+      - app-network
+    depends_on:
+      - db
+
+  frontend:
+    build:
+      context: ../ClientApp
+      dockerfile: Dockerfile
+    ports:
+      - "5001:3000"
+    depends_on:
+      - backend
+    networks:
+      - app-network
+
+  db:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    environment:
+      SA_PASSWORD: "YourStrong!Passw0rd"
+      ACCEPT_EULA: "Y"
+    ports:
+      - "1433:1433"
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge

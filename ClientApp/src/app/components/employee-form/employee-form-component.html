@@ -1,0 +1,46 @@
+<div class="container mt-5">
+  <div class="d-flex justify-content-center">
+    <h2>{{ title }}</h2>
+  </div>
+  <form (ngSubmit)="onSubmit()" #employeeForm="ngForm">
+    <div class="form-group" [ngClass]="{'has-error': employeeForm.submitted && !employeeForm.controls['name']?.valid}">
+      <label for="name">Name</label>
+      <input type="text" class="form-control" id="name" required [(ngModel)]="employee.name" name="name" #name="ngModel">
+      <div *ngIf="employeeForm.submitted && !name.valid" class="text-danger">Name is required</div>
+    </div>
+    <div class="form-group" [ngClass]="{'has-error': employeeForm.submitted && !employeeForm.controls['surname']?.valid}">
+      <label for="surname">Surname</label>
+      <input type="text" class="form-control" id="surname" required [(ngModel)]="employee.surname" name="surname" #surname="ngModel">
+      <div *ngIf="employeeForm.submitted && !surname.valid" class="text-danger">Surname is required</div>
+    </div>
+    <div class="form-group">
+      <label for="age">Age</label>
+      <input type="number" class="form-control" id="age" required [(ngModel)]="employee.age" name="age">
+    </div>
+    <div class="form-group">
+      <label for="gender">Gender</label>
+      <select class="form-control" id="gender" [(ngModel)]="employee.gender" name="gender">
+        <option [value]=0>Male</option>
+        <option [value]=1>Female</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="department">Department</label>
+      <select class="form-control" id="department" [(ngModel)]="employee.department.id" name="department">
+        <option [value]="0">Choose department</option>
+        <option *ngFor="let dept of departments" [value]="dept.id">{{ dept.name }}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="programmingLanguage">Programming Language</label>
+      <select class="form-control" id="programmingLanguage" [(ngModel)]="employee.programmingLanguage.id" name="programmingLanguage">
+        <option [value]="0">Choose language</option>
+        <option *ngFor="let lang of programmingLanguages" [value]="lang.id">{{ lang.name }}</option>
+      </select>
+    </div>
+    <div class="d-flex justify-content-center mt-3">
+      <button type="submit" class="btn btn-primary">{{ isEditing ? 'Save' : 'Add' }}</button>
+      <button type="button" class="btn btn-outline-secondary" (click)="onCancel()">Cancel</button>
+    </div>
+  </form>
+</div>
